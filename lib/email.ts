@@ -98,7 +98,7 @@ export async function sendFeedbackEmail(): Promise<void> {
   const weekLabel = getWeekLabel();
 
   const { error } = await resend.emails.send({
-    from: process.env.EMAIL_FROM!,
+    from: process.env.EMAIL_FROM ?? "onboarding@resend.dev",
     to: process.env.EMAIL_TO!,
     subject: `Mason Quandt Weekly Feedback — ${weekLabel}`,
     html: buildEmailHtml(),
