@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 import { FEEDBACK_QUESTIONS, MASON_CONTEXT } from "./questions";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 function getWeekLabel(): string {
   const now = new Date();
   const weekEnd = new Date(now);
@@ -96,6 +94,7 @@ function buildEmailHtml(): string {
 }
 
 export async function sendFeedbackEmail(): Promise<void> {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const weekLabel = getWeekLabel();
 
   const { error } = await resend.emails.send({
